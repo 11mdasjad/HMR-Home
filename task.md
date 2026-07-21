@@ -1,0 +1,31 @@
+# Tasks: HMR Hostel Management Website
+
+- [x] Project Initialization & Structure Set Up
+  - [x] Initialize `backend` directory with Node, Express, TypeScript, Prisma
+  - [x] Initialize `frontend` directory with Next.js 15, React 19, TypeScript, Tailwind
+- [x] Database Schema & Configuration
+  - [x] Create `schema.prisma` file with MongoDB configurations
+  - [x] Implement Prisma Client setup and Seed script for mockup data
+- [x] Backend API Implementation
+  - [x] Implement JWT-based registration, login, and profile controllers
+  - [x] Implement Rooms API (List, create, update status, details)
+  - [x] Implement Booking flow endpoints (Select room/bed, submit lead, confirm booking)
+  - [x] Implement Admin Management API (Approve, reject, assign rooms, statistics, reports)
+  - [x] Setup Socket.io server (real-time updates, notifications, support chat logs)
+- [x] Frontend Core Design & Layout
+  - [x] Create Tailwind styling tokens and globals (rounded-2xl, soft light palette)
+  - [x] Implement Layout shell (Apple-inspired header, footer, routing links)
+- [x] Frontend Student & Public Pages
+  - [x] Landing page (animated hero, statistics, facilities layout, masonry gallery)
+  - [x] Room listing grid with color-coded bed availability indicators
+  - [x] Airbnb-style multi-step Booking flow with document upload and checkout modal
+  - [x] Student dashboard (Room status, Digital Hostel ID card generator, billing, complaints drawer, real-time support chat)
+- [x] Frontend Admin & Superadmin Dashboards
+  - [x] Admin Analytics view with interactive charts (revenue, occupancy, utilization)
+  - [x] Room manager table, booking approval table, announcements builder
+  - [x] Real-time Customer Support leads pane (with click-to-call mock functionality)
+  - [x] Super Admin panels (account management, audit logs tracker, gateway settings)
+- [x] Verification & Manual Testing
+  - [x] Double-window check (live lead update, room state updates)
+  - [x] Compile and build test
+  - [x] Write Walkthrough documentation

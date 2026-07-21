@@ -1,0 +1,243 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  RESERVED
+  MAINTENANCE
+}
+
+enum BookingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  WAITING_LIST
+  CANCELLED
+}
+
+enum ComplaintStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum LeadStatus {
+  NEW_INQUIRY
+  PENDING
+  CONTACTED
+  INTERESTED
+  CONFIRMED
+  CLOSED
+}
+
+model User {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  email           String    @unique
+  password        String
+  name            String
+  role            Role      @default(STUDENT)
+  isVerified      Boolean   @default(false)
+  otp             String?
+  otpExpires      DateTime?
+  resetToken      String?
+  resetTokenExpiry DateTime?
+  phone           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Student relation
+  studentProfile  Student?
+  
+  // Audits logs
+  auditLogs       AuditLog[]
+}
+
+model Student {
+  id               String       @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String       @unique @db.ObjectId
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  fatherName       String?
+  motherName       String?
+  gender           String?
+  dob              DateTime?
+  phone            String?
+  emergencyContact String?
+  collegeName      String?
+  course           String?
+  year             String?
+  studentId        String?
+  aadharNumber     String?
+  permanentAddress String?
+  currentAddress   String?
+  
+  // Guardian Info
+  guardianName     String?
+  guardianPhone    String?
+  guardianRelation String?
+  
+  // Medical Info
+  bloodGroup       String?
+  medicalHistory   String?
+
+  // Uploaded docs (URLs)
+  photoUrl         String?
+  aadharUrl        String?
+  collegeIdUrl     String?
+  signatureUrl     String?
+
+  // Room allocation
+  roomId           String?      @db.ObjectId
+  room             Room?        @relation(fields: [roomId], references: [id])
+  bedNumber        String?
+
+  bookings         Booking[]
+  payments         Payment[]
+  complaints       Complaint[]
+  attendanceLogs   Attendance[]
+  visitors         Visitor[]
+}
+
+model Room {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  roomNumber   String     @unique
+  category     String     // "3 Seater", "2 Seater", "Single Seater"
+  floor        Int
+  capacity     Int
+  price        Float
+  status       RoomStatus @default(AVAILABLE)
+  
+  // Furniture lists
+  studyTables  Int        @default(0)
+  chairs       Int        @default(0)
+  cupboards    Int        @default(0)
+  hasBathroom  Boolean    @default(true)
+  hasWifi      Boolean    @default(true)
+  images       String[]   // Image URLs
+  
+  students     Student[]
+  bookings     Booking[]
+  complaints   Complaint[]
+}
+
+model Booking {
+  id               String        @id @default(auto()) @map("_id") @db.ObjectId
+  bookingId        String        @unique
+  studentId        String        @db.ObjectId
+  student          Student       @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  roomId           String        @db.ObjectId
+  room             Room          @relation(fields: [roomId], references: [id])
+  bedNumber        String
+  status           BookingStatus @default(PENDING)
+  
+  // Snapshot of student details at booking
+  fullName         String
+  phone            String
+  email            String
+  collegeName      String
+  course           String
+  year             String
+  aadharNumber     String
+  
+  // Payment status
+  paymentStatus    String        @default("UNPAID") // UNPAID, PAID, REFUNDED
+  paymentId        String?
+  
+  qrCode           String?       // QR code payload
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model SupportLead {
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  leadId           String     @unique
+  fullName         String
+  email            String
+  phone            String
+  preferredCategory String
+  selectedRoomNumber String?
+  selectedBedNumber String?
+  bookingProgress  String     // e.g. "Details Filled", "Document Uploaded", "Payment Pending"
+  status           LeadStatus @default(NEW_INQUIRY)
+  assignedTo       String?    // Executive name
+  notes            String[]
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+}
+
+model Payment {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  transactionId String    @unique
+  studentId     String    @db.ObjectId
+  student       Student   @relation(fields: [studentId], references: [id])
+  amount        Float
+  method        String    // Razorpay Card, UPI, etc.
+  status        String    // SUCCESS, FAILED, REFUNDED
+  receiptUrl    String?
+  createdAt     DateTime  @default(now())
+}
+
+model Complaint {
+  id          String          @id @default(auto()) @map("_id") @db.ObjectId
+  studentId   String          @db.ObjectId
+  student     Student         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  roomId      String          @db.ObjectId
+  room        Room            @relation(fields: [roomId], references: [id])
+  category    String          // ELECTRICITY, WATER, INTERNET, CLEANING, MESS, FURNITURE
+  description String
+  status      ComplaintStatus @default(PENDING)
+  notes       String?         // Admin notes or resolution info
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model Announcement {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  content     String
+  createdAt   DateTime @default(now())
+  createdBy   String   // Name or ID of Admin
+}
+
+model Attendance {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  studentId   String   @db.ObjectId
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  date        DateTime @default(now())
+  checkIn     DateTime
+  checkOut    DateTime?
+  status      String   // PRESENT, LATE, ABSENT
+}
+
+model Visitor {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  studentId    String    @db.ObjectId
+  student      Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  visitorName  String
+  relationship String
+  purpose      String
+  checkIn      DateTime  @default(now())
+  checkOut     DateTime?
+}
+
+model AuditLog {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  action    String   // Description of change
+  ipAddress String?
+  timestamp DateTime @default(now())
+}
