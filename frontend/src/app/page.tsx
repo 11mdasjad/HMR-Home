@@ -26,6 +26,17 @@ const leadSchema = z.object({
 
 type LeadFormInput = z.infer<typeof leadSchema>;
 
+const inquiry2Schema = z.object({
+  firstName: z.string().min(2, { message: 'First name must be at least 2 characters' }),
+  lastName: z.string().min(2, { message: 'Last name must be at least 2 characters' }),
+  phone: z.string().regex(/^[0-9]{10}$/, { message: 'Phone must be exactly 10 digits' }),
+  email: z.string().email({ message: 'Invalid email ID' }),
+  college: z.string().min(2, { message: 'College name is required' }),
+  agree: z.boolean().refine(val => val === true, { message: 'You must agree to the Terms' }),
+});
+
+type Inquiry2FormInput = z.infer<typeof inquiry2Schema>;
+
 // Static Data matching reference exactly
 const cities = [
   { name: 'Bengaluru', properties: '8+ Properties', image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?q=80&w=600' },
@@ -257,14 +268,13 @@ export default function HomePage() {
   const [inquirySuccess2, setInquirySuccess2] = useState(false);
 
   // Form Hooks
-  const { register: regLead, handleSubmit: submitLead, formState: { errors: leadErrors, isSubmitting: leadSubmitting }, reset: resetLead } = useForm<LeadFormInput>({
+  const { register: regLead, handleSubmit: submitLead, setValue: setLeadValue, formState: { errors: leadErrors, isSubmitting: leadSubmitting }, reset: resetLead } = useForm<LeadFormInput>({
     resolver: zodResolver(leadSchema),
     defaultValues: { profession: 'Student' }
   });
 
-  const { register: regInquiry2, handleSubmit: submitInquiry2, formState: { errors: inquiry2Errors, isSubmitting: inquiry2Submitting }, reset: resetInquiry2 } = useForm<LeadFormInput>({
-    resolver: zodResolver(leadSchema),
-    defaultValues: { profession: 'Student' }
+  const { register: regInquiry2, handleSubmit: submitInquiry2, formState: { errors: inquiry2Errors, isSubmitting: inquiry2Submitting }, reset: resetInquiry2 } = useForm<Inquiry2FormInput>({
+    resolver: zodResolver(inquiry2Schema)
   });
 
   // Listen to custom header sync events
@@ -317,7 +327,7 @@ export default function HomePage() {
     }
   };
 
-  const onInquiry2Submit = async (data: LeadFormInput) => {
+  const onInquiry2Submit = async (data: Inquiry2FormInput) => {
     try {
       const { error } = await supabase.from('inquiries').insert([
         {
@@ -326,7 +336,7 @@ export default function HomePage() {
           email: data.email,
           phone: data.phone,
           college: data.college,
-          profession: data.profession
+          profession: 'Student' // Default to Student for form 2 submissions
         }
       ]);
       if (error) throw error;
@@ -485,7 +495,7 @@ export default function HomePage() {
                     type="button"
                     onClick={() => {
                       setProfession('Student');
-                      resetLead(val => ({ ...val, profession: 'Student' }));
+                      setLeadValue('profession', 'Student');
                     }}
                     className={`py-4.5 rounded-xl text-sm font-black transition-all border ${
                       profession === 'Student'
@@ -499,7 +509,7 @@ export default function HomePage() {
                     type="button"
                     onClick={() => {
                       setProfession('Salaried');
-                      resetLead(val => ({ ...val, profession: 'Salaried' }));
+                      setLeadValue('profession', 'Salaried');
                     }}
                     className={`py-4.5 rounded-xl text-sm font-black transition-all border ${
                       profession === 'Salaried'
