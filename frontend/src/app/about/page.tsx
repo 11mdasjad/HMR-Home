@@ -21,7 +21,7 @@ const stats = [
 
 export default function AboutPage() {
   return (
-    <div className="bg-primary-soft min-h-[80vh] py-12 px-6">
+    <div className="bg-primary-soft min-h-[80vh] py-32 px-6 sm:px-12">
       <div className="max-w-5xl mx-auto space-y-16">
         
         {/* Header Hero Section */}
@@ -30,7 +30,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 bg-secondary/10 px-4 py-1.5 rounded-full text-secondary font-bold text-xs uppercase tracking-wider"
+            className="inline-flex items-center space-x-2 bg-secondary/10 px-4 py-1.5 rounded-full text-secondary font-black text-xs uppercase tracking-wider"
           >
             <Award className="w-4 h-4" />
             <span>Pioneering Premium Living</span>
@@ -40,7 +40,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-extrabold text-neutral-800 leading-tight"
+            className="text-4xl sm:text-5xl font-black text-neutral-800 leading-tight"
           >
             About HMR Hostel
           </motion.h1>
@@ -49,7 +49,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-sm sm:text-base text-neutral-400 font-medium leading-relaxed"
+            className="text-base sm:text-lg text-neutral-400 font-bold leading-relaxed"
           >
             Dedicated to providing the safest, most comfortable, and focus-friendly residential environment for college students in Delhi NCR.
           </motion.p>
@@ -63,34 +63,34 @@ export default function AboutPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm text-center space-y-1"
+              className="bg-white p-8 rounded-3xl border border-neutral-100 shadow-sm text-center space-y-2"
             >
-              <div className="text-3xl font-extrabold text-secondary">{s.value}</div>
-              <div className="text-xs text-neutral-400 font-semibold uppercase tracking-wider">{s.label}</div>
+              <div className="text-4xl font-black text-secondary">{s.value}</div>
+              <div className="text-xs text-neutral-400 font-extrabold uppercase tracking-wider">{s.label}</div>
             </motion.div>
           ))}
         </section>
 
         {/* Brand Mission & Story */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white p-8 sm:p-12 rounded-3xl border border-neutral-100 shadow-sm">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white p-8 sm:p-12 rounded-[32px] border border-neutral-100 shadow-sm">
           <div className="space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-neutral-800 leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-neutral-800 leading-tight">
               Our Vision: Your Home Away From Home
             </h2>
-            <p className="text-sm text-neutral-500 leading-relaxed font-medium">
+            <p className="text-base text-neutral-500 leading-relaxed font-bold">
               Founded with the singular goal of redefining student housing, HMR Hostel bridges the gap between structured campus dormitories and unpredictable rented apartments. We understand that a student needs more than just a bed to study and grow.
             </p>
-            <p className="text-sm text-neutral-500 leading-relaxed font-medium">
+            <p className="text-base text-neutral-500 leading-relaxed font-bold">
               We focus on premium support, healthy meal menus, high-speed connectivity, and rapid maintenance ticketing to let you channel 100% of your energy into your studies, sports, and personal development.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               {[
                 'Affiliated with top engineering and management colleges.',
                 'Rigid anti-ragging policies and biometric gates checks.',
                 'Eco-friendly solar backups and organic kitchen supplies.'
               ].map((text, i) => (
-                <div key={i} className="flex items-center space-x-2.5 text-xs text-neutral-600 font-bold">
-                  <CheckCircle className="w-4 h-4 text-accent" />
+                <div key={i} className="flex items-center space-x-2.5 text-sm text-neutral-600 font-black">
+                  <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
                   <span>{text}</span>
                 </div>
               ))}
@@ -108,21 +108,21 @@ export default function AboutPage() {
         {/* Our Pillars Values */}
         <section className="space-y-10">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl font-extrabold text-neutral-800">Our Core Principles</h2>
-            <p className="text-xs text-neutral-400 font-bold">The foundation of everything we build at HMR.</p>
+            <h2 className="text-3xl font-black text-neutral-800">Our Core Principles</h2>
+            <p className="text-sm text-neutral-400 font-bold">The foundation of everything we build at HMR.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {values.map((val, idx) => {
               const Icon = val.icon;
               return (
-                <div key={idx} className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm flex items-start space-x-4">
-                  <div className={`p-3 rounded-xl flex-shrink-0 ${val.color}`}>
-                    <Icon className="w-6 h-6" />
+                <div key={idx} className="bg-white p-8 rounded-3xl border border-neutral-100 shadow-sm flex items-start space-x-5">
+                  <div className={`p-3.5 rounded-2xl flex-shrink-0 ${val.color}`}>
+                    <Icon className="w-7 h-7" />
                   </div>
-                  <div>
-                    <h3 className="font-extrabold text-neutral-800 text-lg mb-1">{val.title}</h3>
-                    <p className="text-xs text-neutral-500 leading-relaxed font-semibold">{val.desc}</p>
+                  <div className="space-y-1">
+                    <h3 className="font-black text-neutral-800 text-xl">{val.title}</h3>
+                    <p className="text-sm text-neutral-500 leading-relaxed font-bold">{val.desc}</p>
                   </div>
                 </div>
               );
@@ -131,16 +131,16 @@ export default function AboutPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="bg-neutral-900 text-white rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-xl">
-          <h2 className="text-2xl sm:text-3xl font-extrabold">Ready to Visit HMR Campus?</h2>
-          <p className="text-sm text-neutral-400 max-w-md mx-auto leading-relaxed">
-            Reserve a premium bed now. Smart bed selections are synced in real-time. Reach out to our admissions helpdesk today!
+        <section className="bg-neutral-900 text-white rounded-[32px] p-10 sm:p-14 text-center space-y-8 shadow-xl">
+          <h2 className="text-3xl sm:text-4xl font-black">Ready to Visit HMR Campus?</h2>
+          <p className="text-base text-neutral-400 max-w-lg mx-auto leading-relaxed font-bold">
+            Reserve a premium bed now. Send us an inquiry and our admissions team will guide you through the next steps!
           </p>
           <div className="flex justify-center space-x-4">
-            <Link href="/book" className="bg-secondary text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-secondary/20 hover:bg-secondary-dark">
+            <Link href="/#inquiry" className="bg-secondary text-white font-black px-8 py-4.5 rounded-2xl text-sm transition-all shadow-md shadow-secondary/20 hover:bg-secondary-dark">
               Book Bed Now
             </Link>
-            <Link href="/contact" className="border border-white/20 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all hover:bg-white/10">
+            <Link href="/#contact" className="border border-white/20 text-white font-black px-8 py-4.5 rounded-2xl text-sm transition-all hover:bg-white/10">
               Get in Touch
             </Link>
           </div>

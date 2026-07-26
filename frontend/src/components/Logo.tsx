@@ -39,10 +39,10 @@ export function LogoIcon({ className = 'w-10 h-10', size = 40 }: { className?: s
         className="text-neutral-800"
       />
       
-      {/* Orange Arch */}
+      {/* Amber Arch */}
       <path
         d="M38 33 A 12 12 0 0 1 62 33"
-        stroke="#f97316" // Orange/Accent hex color
+        stroke="#f59e0b" // Accent amber hex color
         strokeWidth="4.5"
         strokeLinecap="round"
         fill="none"

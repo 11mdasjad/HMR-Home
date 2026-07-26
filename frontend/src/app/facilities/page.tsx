@@ -76,7 +76,7 @@ const items = [
 
 export default function FacilitiesPage() {
   return (
-    <div className="bg-primary-soft min-h-screen py-12 px-6">
+    <div className="bg-primary-soft min-h-screen py-32 px-6 sm:px-12">
       <div className="max-w-6xl mx-auto space-y-16">
         
         {/* Header Info */}
@@ -84,13 +84,13 @@ export default function FacilitiesPage() {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center space-x-2 bg-secondary/10 px-4 py-1.5 rounded-full text-secondary font-bold text-xs uppercase tracking-wider"
+            className="inline-flex items-center space-x-2 bg-secondary/10 px-4 py-1.5 rounded-full text-secondary font-black text-xs uppercase tracking-wider"
           >
             <Zap className="w-4 h-4" />
             <span>Simplify Your Living</span>
           </motion.div>
-          <h1 className="text-4xl font-extrabold text-neutral-800 tracking-tight">Hostel Facilities & Services</h1>
-          <p className="text-sm text-neutral-400 font-semibold leading-relaxed">
+          <h1 className="text-4xl sm:text-5xl font-black text-neutral-800 tracking-tight">Hostel Facilities & Services</h1>
+          <p className="text-base text-neutral-400 font-bold leading-relaxed">
             HMR Hostel offers custom-built amenities designed to eliminate daily logistics friction, letting students focus fully on their academic careers.
           </p>
         </section>
@@ -104,23 +104,23 @@ export default function FacilitiesPage() {
                 key={index}
                 whileHover={{ y: -4 }}
                 transition={{ type: 'spring', stiffness: 300 }}
-                className="bg-white p-8 rounded-3xl border border-neutral-100 shadow-sm flex flex-col justify-between hover:border-secondary/20 transition-all space-y-6"
+                className="bg-white p-8 sm:p-10 rounded-[32px] border border-neutral-100 shadow-sm flex flex-col justify-between hover:border-secondary/20 transition-all space-y-6"
               >
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
-                    <div className={`p-3 rounded-2xl ${item.color} flex-shrink-0`}>
-                      <Icon className="w-6 h-6" />
+                    <div className={`p-3.5 rounded-2xl ${item.color} flex-shrink-0`}>
+                      <Icon className="w-7 h-7" />
                     </div>
-                    <h3 className="font-extrabold text-neutral-800 text-lg sm:text-xl leading-tight">{item.title}</h3>
+                    <h3 className="font-black text-neutral-800 text-xl sm:text-2xl leading-tight">{item.title}</h3>
                   </div>
                   
-                  <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed font-medium">
+                  <p className="text-sm sm:text-base text-neutral-500 leading-relaxed font-bold">
                     {item.desc}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-neutral-100 flex items-start space-x-2 text-[10px] text-neutral-400 font-bold uppercase tracking-wider">
-                  <Clock className="w-3.5 h-3.5 text-neutral-400 mt-0.5 flex-shrink-0" />
+                <div className="pt-4 border-t border-neutral-100 flex items-start space-x-2 text-xs text-neutral-400 font-extrabold uppercase tracking-wider">
+                  <Clock className="w-4 h-4 text-neutral-400 mt-0.5 flex-shrink-0" />
                   <span>{item.details}</span>
                 </div>
               </motion.div>
@@ -129,14 +129,14 @@ export default function FacilitiesPage() {
         </section>
 
         {/* Closing CTA Banner */}
-        <section className="bg-white rounded-3xl p-8 border border-neutral-100 shadow-sm text-center max-w-3xl mx-auto space-y-6">
-          <h3 className="font-extrabold text-xl text-neutral-800">Experience Premium Hostel Living</h3>
-          <p className="text-xs text-neutral-400 font-semibold max-w-md mx-auto">
-            Bookings are fully digitized and live availability is updated in real-time. Secure your room category today.
+        <section className="bg-white rounded-[32px] p-10 border border-neutral-100 shadow-sm text-center max-w-3xl mx-auto space-y-6">
+          <h3 className="font-black text-2xl sm:text-3xl text-neutral-800">Experience Premium Hostel Living</h3>
+          <p className="text-sm text-neutral-400 font-bold max-w-md mx-auto">
+            Bookings are fully digitized and processed via lead request. Secure your premium room category today.
           </p>
           <div>
-            <Link href="/book" className="inline-block bg-secondary hover:bg-secondary-dark text-white font-bold px-8 py-3.5 rounded-2xl text-xs transition-all shadow-sm">
-              Start Booking Flow
+            <Link href="/#inquiry" className="inline-block bg-secondary hover:bg-secondary-dark text-white font-black px-8 py-4.5 rounded-2xl text-sm transition-all shadow-sm">
+              Inquire About Availability
             </Link>
           </div>
         </section>

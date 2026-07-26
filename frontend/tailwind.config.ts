@@ -12,18 +12,20 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#ffffff",
+          light: "#1e293b",
+          DEFAULT: "#0f172a",
+          dark: "#020617",
           soft: "#f8fafc",
         },
         secondary: {
-          light: "#e0f2fe",
-          DEFAULT: "#0284c7",
-          dark: "#0369a1",
+          light: "#eff6ff",
+          DEFAULT: "#2563eb",
+          dark: "#1d4ed8",
         },
         accent: {
-          light: "#d1fae5",
-          DEFAULT: "#10b981",
-          dark: "#059669",
+          light: "#ffedd5",
+          DEFAULT: "#ff763f",
+          dark: "#e0531f",
         },
         warning: {
           light: "#ffedd5",
