@@ -14,66 +14,61 @@ export function LogoIcon({ className = 'w-10 h-10', size = 40 }: { className?: s
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 120 120"
+      viewBox="0 0 200 220"
       className={className}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: (size * 220) / 200 }}
       fill="none"
     >
-      {/* House Roof - Dark Navy Blue */}
-      <path
-        d="M60 8 L16 52 L26 52 L26 52 L60 18 L94 52 L104 52 Z"
+      {/* Chimney */}
+      <rect
+        x="138"
+        y="28"
+        width="14"
+        height="32"
+        rx="2"
         fill="#1B3A5C"
       />
       
-      {/* House Body / Walls - Dark Navy */}
+      {/* Roof - outer triangle with overhang */}
       <path
-        d="M26 52 L26 90 L94 90 L94 52 L60 18 Z"
+        d="M100 12 L18 90 L36 90 L36 160 L164 160 L164 90 L182 90 Z"
         fill="#1B3A5C"
       />
-
-      {/* Inner house background - slightly lighter */}
+      
+      {/* Inner cutout - house interior (white background) */}
       <path
-        d="M32 56 L32 84 L88 84 L88 56 L60 28 Z"
-        fill="#224B72"
+        d="M100 38 L48 90 L48 148 L152 148 L152 90 Z"
+        fill="white"
       />
 
-      {/* Wave 1 - Top wave (lighter blue) */}
+      {/* Wave 1 - upper wave (medium blue) */}
       <path
-        d="M36 50 Q44 42, 52 50 Q60 58, 68 50 Q76 42, 84 50"
-        stroke="#5B9BD5"
-        strokeWidth="4"
+        d="M56 100 C72 84, 88 84, 100 100 C112 116, 128 116, 144 100"
+        stroke="#3B7DC0"
+        strokeWidth="7"
         strokeLinecap="round"
         fill="none"
       />
       
-      {/* Wave 2 - Middle wave */}
+      {/* Wave 2 - lower wave (lighter blue) */}
       <path
-        d="M36 62 Q44 54, 52 62 Q60 70, 68 62 Q76 54, 84 62"
-        stroke="#7AB8E0"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-
-      {/* Wave 3 - Bottom wave (lightest blue) */}
-      <path
-        d="M36 73 Q44 65, 52 73 Q60 81, 68 73 Q76 65, 84 73"
-        stroke="#A8D4F0"
-        strokeWidth="3"
+        d="M56 122 C72 106, 88 106, 100 122 C112 138, 128 138, 144 122"
+        stroke="#6AAAD4"
+        strokeWidth="6"
         strokeLinecap="round"
         fill="none"
       />
       
       {/* HMR Text */}
       <text
-        x="60"
-        y="108"
+        x="100"
+        y="205"
         textAnchor="middle"
-        fontFamily="Arial, Helvetica, sans-serif"
-        fontSize="24"
+        fontFamily="Arial Black, Arial, Helvetica, sans-serif"
+        fontSize="48"
         fontWeight="900"
         fill="#1B3A5C"
-        letterSpacing="3"
+        letterSpacing="6"
       >
         HMR
       </text>
