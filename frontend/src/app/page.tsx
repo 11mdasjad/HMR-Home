@@ -10,6 +10,8 @@ import {
   Wifi, Shield, KeyRound, Lock, Flame, ChevronRight, CheckCircle, ArrowRight,
   Sparkles, Building, MapPin, Phone, Mail, Star, Search, Check, Info
 } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+
 
 // Form validation schemas
 const leadSchema = z.object({
@@ -294,16 +296,46 @@ export default function HomePage() {
     });
   }, [emblaTestimonialsApi]);
 
-  const onLeadSubmit = (data: LeadFormInput) => {
-    console.log('Lead call back submission:', data);
-    setLeadSuccess(true);
-    resetLead();
+  const onLeadSubmit = async (data: LeadFormInput) => {
+    try {
+      const { error } = await supabase.from('inquiries').insert([
+        {
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          college: data.college,
+          profession: data.profession
+        }
+      ]);
+      if (error) throw error;
+      setLeadSuccess(true);
+      resetLead();
+    } catch (err) {
+      console.error('Error saving inquiry:', err);
+      alert('Failed to submit inquiry. Please try again.');
+    }
   };
 
-  const onInquiry2Submit = (data: LeadFormInput) => {
-    console.log('Second lead inquiry submission:', data);
-    setInquirySuccess2(true);
-    resetInquiry2();
+  const onInquiry2Submit = async (data: LeadFormInput) => {
+    try {
+      const { error } = await supabase.from('inquiries').insert([
+        {
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          college: data.college,
+          profession: data.profession
+        }
+      ]);
+      if (error) throw error;
+      setInquirySuccess2(true);
+      resetInquiry2();
+    } catch (err) {
+      console.error('Error saving inquiry:', err);
+      alert('Failed to submit inquiry. Please try again.');
+    }
   };
 
   // Filter Colleges based on search query, header city, or header search

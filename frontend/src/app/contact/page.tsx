@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import {
   PhoneCall, Mail, MapPin, Clock, CheckCircle2, Building, Sparkles
 } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
@@ -33,10 +34,23 @@ export default function ContactPage() {
     resolver: zodResolver(contactSchema)
   });
 
-  const onSubmit = (data: ContactFormInput) => {
-    console.log('Contact form inquiry:', data);
-    setSuccess(true);
-    reset();
+  const onSubmit = async (data: ContactFormInput) => {
+    try {
+      const { error } = await supabase.from('contact_messages').insert([
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message
+        }
+      ]);
+      if (error) throw error;
+      setSuccess(true);
+      reset();
+    } catch (err) {
+      console.error('Error saving message:', err);
+      alert('Failed to send message. Please try again.');
+    }
   };
 
   return (
