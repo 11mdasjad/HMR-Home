@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Instagram, Youtube, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { FaInstagram, FaYoutube, FaXTwitter, FaLinkedinIn, FaFacebookF } from 'react-icons/fa6';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -11,6 +11,14 @@ export default function Footer() {
   const locationsList = [
     'Ahmedabad', 'Bengaluru', 'Dehradun', 'Delhi', 'Greater Noida', 'Gurgaon',
     'Indore', 'Jaipur', 'Mangalore', 'Mumbai', 'Nagpur', 'Noida', 'Pune', 'Raipur'
+  ];
+
+  const socialLinks = [
+    { icon: FaInstagram, name: 'Instagram', url: 'https://instagram.com', color: 'hover:text-[#E4405F]' },
+    { icon: FaYoutube, name: 'YouTube', url: 'https://youtube.com', color: 'hover:text-[#FF0000]' },
+    { icon: FaXTwitter, name: 'X (Twitter)', url: 'https://twitter.com', color: 'hover:text-neutral-900' },
+    { icon: FaLinkedinIn, name: 'LinkedIn', url: 'https://linkedin.com', color: 'hover:text-[#0A66C2]' },
+    { icon: FaFacebookF, name: 'Facebook', url: 'https://facebook.com', color: 'hover:text-[#1877F2]' }
   ];
 
   return (
@@ -32,13 +40,7 @@ export default function Footer() {
           </div>
           
           <div className="flex space-x-3.5 pt-1">
-            {[
-              { icon: Instagram, name: 'Instagram', url: 'https://instagram.com' },
-              { icon: Youtube, name: 'YouTube', url: 'https://youtube.com' },
-              { icon: Twitter, name: 'Twitter', url: 'https://twitter.com' },
-              { icon: Linkedin, name: 'LinkedIn', url: 'https://linkedin.com' },
-              { icon: Facebook, name: 'Facebook', url: 'https://facebook.com' }
-            ].map((soc, i) => {
+            {socialLinks.map((soc, i) => {
               const Icon = soc.icon;
               return (
                 <a
@@ -47,7 +49,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={soc.name}
-                  className="w-11 h-11 rounded-full bg-neutral-50 border border-neutral-200 hover:border-accent hover:bg-accent/10 text-neutral-600 hover:text-accent flex items-center justify-center transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm"
+                  className={`w-11 h-11 rounded-full bg-neutral-50 border border-neutral-200 hover:border-accent/40 text-neutral-500 ${soc.color} flex items-center justify-center transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm`}
                 >
                   <Icon className="w-5 h-5" />
                 </a>
