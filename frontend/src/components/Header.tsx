@@ -63,14 +63,14 @@ export default function Header() {
           <Search className="w-5 h-5 text-neutral-400 absolute right-5 top-1/2 transform -translate-y-1/2" />
         </div>
 
-        {/* Right Side: Contact, WhatsApp & Menu Toggle (Enlarged) */}
-        <div className="flex items-center space-x-5 sm:space-x-8 flex-shrink-0">
+        {/* Right Side: Contact, WhatsApp & Menu Toggle (Enlarged / Responsive) */}
+        <div className="flex items-center space-x-4 sm:space-x-8 flex-shrink-0">
           {/* WhatsApp logo / link */}
           <a
             href="https://wa.me/918383027664"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center space-x-2 text-base font-black text-[#25D366] hover:text-[#20ba5a] transition-colors"
+            className="flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base font-black text-[#25D366] hover:text-[#20ba5a] transition-colors"
           >
             <svg
               className="w-6 h-6 fill-current"
@@ -85,9 +85,9 @@ export default function Header() {
           {/* Call Us button */}
           <a
             href="tel:+918383027664"
-            className="flex items-center space-x-2 text-base font-black text-accent border-2 border-accent hover:bg-accent hover:text-white px-6 py-3 rounded-full transition-all duration-300 transform hover:-translate-y-0.5"
+            className="flex items-center space-x-1.5 sm:space-x-2 text-sm sm:text-base font-black text-accent border-2 border-accent hover:bg-accent hover:text-white px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-full transition-all duration-300 transform hover:-translate-y-0.5"
           >
-            <Phone className="w-5 h-5" />
+            <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>Call Us</span>
           </a>
 

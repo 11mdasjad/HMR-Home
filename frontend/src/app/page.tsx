@@ -528,29 +528,29 @@ export default function HomePage() {
           {/* 3-Column Layout */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start pt-8">
             
-            {/* Column 1: Vertical Tabs Sidebar - Enlarged */}
-            <div className="md:col-span-3 flex flex-col space-y-3.5">
+            {/* Column 1: Tabs Sidebar - Horizontally Scrollable on Mobile */}
+            <div className="md:col-span-3 flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible gap-3 pb-4 md:pb-0 scrollbar-none flex-nowrap -mx-4 px-4 md:mx-0 md:px-0">
               {['Safety', 'Community', 'Comfort', 'Health'].map((tab) => {
                 const isActive = activeAmenityTab === tab;
                 return (
                   <button
                     key={tab}
                     onClick={() => setActiveAmenityTab(tab)}
-                    className={`w-full flex items-center justify-between px-6 py-5 rounded-[24px] text-base font-black transition-all border ${
+                    className={`flex-shrink-0 md:w-full flex items-center justify-between px-6 py-4.5 md:py-5 rounded-[20px] md:rounded-[24px] text-sm md:text-base font-black transition-all border ${
                       isActive
-                        ? 'border-2 border-emerald-500 text-emerald-600 bg-white shadow-sm scale-102'
+                        ? 'border-2 border-emerald-500 text-emerald-600 bg-white shadow-sm'
                         : 'border-neutral-200 text-neutral-500 bg-white hover:bg-neutral-50'
                     }`}
                   >
                     <span>{tab}</span>
-                    <ChevronRight className={`w-5 h-5 ${isActive ? 'text-emerald-500' : 'text-neutral-300'}`} />
+                    <ChevronRight className={`hidden md:block w-5 h-5 ${isActive ? 'text-emerald-500' : 'text-neutral-300'}`} />
                   </button>
                 );
               })}
             </div>
 
-            {/* Column 2: Center Details & Cute Character Sketch - Enlarged */}
-            <div className="md:col-span-5 bg-white p-8 sm:p-10 rounded-[32px] border border-neutral-200/50 shadow-sm flex flex-col justify-between space-y-8 min-h-[460px]">
+            {/* Column 2: Center Details & Cute Character Sketch */}
+            <div className="md:col-span-5 bg-white p-8 sm:p-10 rounded-[32px] border border-neutral-200/50 shadow-sm flex flex-col justify-between space-y-8 min-h-[380px] md:min-h-[460px]">
               <div className="space-y-4">
                 <h3 className="text-3xl font-black text-accent">{activeAmenityTab}</h3>
                 <p className="text-sm sm:text-base text-neutral-500 leading-relaxed font-bold">
@@ -568,7 +568,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Column 3: Vertically Stacked Amenities List - Enlarged */}
+            {/* Column 3: Vertically Stacked Amenities List */}
             <div className="md:col-span-4 space-y-4 bg-white/40 p-6 rounded-[28px] border border-neutral-100">
               {amenitiesByTab[activeAmenityTab].list.map((am, i) => (
                 <div
