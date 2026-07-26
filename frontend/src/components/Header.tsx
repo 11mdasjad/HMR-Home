@@ -14,17 +14,24 @@ export default function Header() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200/60 shadow-sm py-4 text-neutral-800 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between gap-6">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200/60 shadow-sm py-3.5 text-neutral-800 transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-10 flex items-center justify-between gap-4 sm:gap-6">
         
         {/* Left Side: Logo & City Dropdown */}
-        <div className="flex items-center space-x-8">
+        <div className="flex items-center space-x-4 sm:space-x-8">
+          
+          {/* Responsive Logo: smaller on mobile, larger on desktop */}
           <Link href="/" className="hover:opacity-90 transition-opacity flex-shrink-0">
-            <Logo showText={true} textColor="text-neutral-900" subColor="text-neutral-400" size="md" />
+            <div className="md:hidden">
+              <Logo showText={true} textColor="text-neutral-900" subColor="text-neutral-400" size="sm" />
+            </div>
+            <div className="hidden md:block">
+              <Logo showText={true} textColor="text-neutral-900" subColor="text-neutral-400" size="md" />
+            </div>
           </Link>
           
           {/* City Selection Dropdown (Enlarged) */}
-          <div className="relative hidden md:block border-l border-neutral-300 pl-8">
+          <div className="relative hidden md:block border-l border-neutral-300 pl-6 sm:pl-8">
             <label className="block text-xs text-neutral-400 font-bold uppercase tracking-widest">Select Your</label>
             <div className="flex items-center space-x-2 cursor-pointer text-base sm:text-lg font-black text-neutral-800 hover:text-accent transition-colors mt-0.5">
               <span>{selectedCity}</span>
@@ -64,7 +71,7 @@ export default function Header() {
         </div>
 
         {/* Right Side: Contact, WhatsApp & Menu Toggle (Enlarged / Responsive) */}
-        <div className="flex items-center space-x-4 sm:space-x-8 flex-shrink-0">
+        <div className="flex items-center space-x-3.5 sm:space-x-6 flex-shrink-0">
           {/* WhatsApp logo / link */}
           <a
             href="https://wa.me/918383027664"
@@ -82,13 +89,14 @@ export default function Header() {
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
 
-          {/* Call Us button */}
+          {/* Call Us button: Circular icon-only on mobile, full text button on desktop */}
           <a
             href="tel:+918383027664"
-            className="flex items-center space-x-1.5 sm:space-x-2 text-sm sm:text-base font-black text-accent border-2 border-accent hover:bg-accent hover:text-white px-4 py-2.5 sm:px-6 sm:py-3.5 rounded-full transition-all duration-300 transform hover:-translate-y-0.5"
+            className="flex items-center justify-center text-sm sm:text-base font-black text-accent border-2 border-accent hover:bg-accent hover:text-white p-2.5 sm:px-6 sm:py-3 rounded-full transition-all duration-300 transform hover:-translate-y-0.5"
+            aria-label="Call Us"
           >
-            <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>Call Us</span>
+            <Phone className="w-4.5 h-4.5" />
+            <span className="hidden sm:inline ml-1.5">Call Us</span>
           </a>
 
           {/* Mobile Menu Toggle Button */}
@@ -98,9 +106,9 @@ export default function Header() {
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? (
-              <X className="w-8 h-8 text-neutral-800" />
+              <X className="w-7.5 h-7.5 text-neutral-800" />
             ) : (
-              <Menu className="w-8 h-8 text-neutral-800" />
+              <Menu className="w-7.5 h-7.5 text-neutral-800" />
             )}
           </button>
         </div>
@@ -109,7 +117,7 @@ export default function Header() {
 
       {/* Mobile Drawer Menu Panel */}
       {mobileMenuOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-[88px] bg-white z-40 p-8 border-t border-neutral-100 flex flex-col justify-between animate-fade-in">
+        <div className="fixed inset-x-0 bottom-0 top-[76px] bg-white z-40 p-8 border-t border-neutral-100 flex flex-col justify-between animate-fade-in">
           <div className="flex flex-col space-y-6">
             
             {/* Search Input for Mobile */}
