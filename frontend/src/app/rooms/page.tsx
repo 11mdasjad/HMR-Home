@@ -34,7 +34,7 @@ const mockRooms: RoomType[] = [
     spaces: '35 Rooms Available',
     desc: 'Collaborate and share your college experience in our spacious double sharing rooms, perfectly optimized to give each resident their own space, locker, and workstation.',
     features: ['Attached Bathroom', '2 Beds', 'Duo Wardrobes', 'Balcony Access'],
-    image: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=600&auto=format&fit=crop',
+    image: '/images/hero_room.png',
     amenities: ['High-Speed WiFi', 'AC', 'Housekeeping', 'Duo Study Tables', 'Biometric Access']
   },
   {

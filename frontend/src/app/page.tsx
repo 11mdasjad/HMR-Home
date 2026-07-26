@@ -380,7 +380,7 @@ export default function HomePage() {
           <div className="lg:col-span-7 space-y-8">
             <div className="relative rounded-[32px] overflow-hidden shadow-xl border border-neutral-100 aspect-[16/10]">
               <img
-                src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=1200"
+                src="/images/hero_room.png"
                 alt="Your Home away from Home"
                 className="w-full h-full object-cover"
               />
