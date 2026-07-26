@@ -87,7 +87,9 @@ export default function ContactPage() {
                   <MapPin className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
                   <div>
                     <div className="text-neutral-800 font-black text-base">HMR Hostel Campus</div>
-                    <p className="text-neutral-400 mt-1 leading-relaxed">Sector-62, Near University Main Gate, Noida, Delhi NCR, India</p>
+                    <p className="text-neutral-400 mt-1 leading-relaxed">
+                      Gate number 4, Plot Number 40B, near Sharda University, Knowledge Park III, Greater Noida, Uttar Pradesh 201310
+                    </p>
                   </div>
                 </div>
 
@@ -105,7 +107,7 @@ export default function ContactPage() {
             <div className="bg-white p-4 rounded-[32px] border border-neutral-200/50 shadow-sm overflow-hidden h-72 relative">
               <iframe
                 title="HMR Hostel Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.4046777636923!2d77.37033507632664!3d28.61762297567262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce55d7b5791db%3A0xe5a14d59a72df9b7!2sSector%2062%2C%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.279768636599!2d77.4831688755054!3d28.47353919131607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea696446548d%3A0x8673895e69e34e56!2sSharda%20University!5e0!3m2!1sen!2sin!4v1721998500000!5m2!1sen!2sin"
                 className="w-full h-full border-0 rounded-2xl"
                 allowFullScreen={false}
                 loading="lazy"
