@@ -14,104 +14,69 @@ export function LogoIcon({ className = 'w-10 h-10', size = 40 }: { className?: s
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 100 85"
+      viewBox="0 0 120 120"
       className={className}
-      style={{ width: size, height: (size * 85) / 100 }}
+      style={{ width: size, height: size }}
       fill="none"
     >
-      {/* Chimney */}
-      <rect
-        x="68"
-        y="21"
-        width="6"
-        height="14"
-        fill="currentColor"
-        className="text-neutral-800"
+      {/* House Roof - Dark Navy Blue */}
+      <path
+        d="M60 8 L16 52 L26 52 L26 52 L60 18 L94 52 L104 52 Z"
+        fill="#1B3A5C"
       />
       
-      {/* Roof */}
+      {/* House Body / Walls - Dark Navy */}
       <path
-        d="M20 45 L50 18 L80 45"
-        stroke="currentColor"
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-neutral-800"
+        d="M26 52 L26 90 L94 90 L94 52 L60 18 Z"
+        fill="#1B3A5C"
       />
-      
-      {/* Amber Arch */}
+
+      {/* Inner house background - slightly lighter */}
       <path
-        d="M38 33 A 12 12 0 0 1 62 33"
-        stroke="#f59e0b" // Accent amber hex color
-        strokeWidth="4.5"
+        d="M32 56 L32 84 L88 84 L88 56 L60 28 Z"
+        fill="#224B72"
+      />
+
+      {/* Wave 1 - Top wave (lighter blue) */}
+      <path
+        d="M36 50 Q44 42, 52 50 Q60 58, 68 50 Q76 42, 84 50"
+        stroke="#5B9BD5"
+        strokeWidth="4"
         strokeLinecap="round"
         fill="none"
       />
       
-      {/* HMR Lettering - Geometric Overlay */}
-      {/* H Left Column */}
+      {/* Wave 2 - Middle wave */}
       <path
-        d="M31 38 L31 65"
-        stroke="currentColor"
-        strokeWidth="4.5"
+        d="M36 62 Q44 54, 52 62 Q60 70, 68 62 Q76 54, 84 62"
+        stroke="#7AB8E0"
+        strokeWidth="3.5"
         strokeLinecap="round"
-        className="text-neutral-800"
+        fill="none"
       />
-      {/* H Crossbar */}
+
+      {/* Wave 3 - Bottom wave (lightest blue) */}
       <path
-        d="M31 51 L44 51"
-        stroke="currentColor"
-        strokeWidth="4.5"
+        d="M36 73 Q44 65, 52 73 Q60 81, 68 73 Q76 65, 84 73"
+        stroke="#A8D4F0"
+        strokeWidth="3"
         strokeLinecap="round"
-        className="text-neutral-800"
-      />
-      
-      {/* H Right Column / M Left Column */}
-      <path
-        d="M44 38 L44 65"
-        stroke="currentColor"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        className="text-neutral-800"
-      />
-      
-      {/* M Center V */}
-      <path
-        d="M44 38 L50 49 L56 38"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="text-neutral-800"
-      />
-      
-      {/* M Right Column / R Left Column */}
-      <path
-        d="M56 38 L56 65"
-        stroke="currentColor"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        className="text-neutral-800"
-      />
-      
-      {/* R Loop */}
-      <path
-        d="M56 43 C64 43, 64 52, 56 52"
-        stroke="currentColor"
-        strokeWidth="4"
-        strokeLinecap="round"
-        className="text-neutral-800"
         fill="none"
       />
       
-      {/* R Leg */}
-      <path
-        d="M56 52 L64 65"
-        stroke="currentColor"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        className="text-neutral-800"
-      />
+      {/* HMR Text */}
+      <text
+        x="60"
+        y="108"
+        textAnchor="middle"
+        fontFamily="Arial, Helvetica, sans-serif"
+        fontSize="24"
+        fontWeight="900"
+        fill="#1B3A5C"
+        letterSpacing="3"
+      >
+        HMR
+      </text>
     </svg>
   );
 }
